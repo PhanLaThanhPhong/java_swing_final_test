@@ -20,7 +20,7 @@ public class Main {
     static {
         try {
             // địa chỉ ip
-            socket = new Socket("192.168.2.106", Constants.SOCKET_PORT);
+            socket = new Socket("192.168.100.6", Constants.SOCKET_PORT);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

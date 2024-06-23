@@ -51,7 +51,7 @@ public class ProductCard extends javax.swing.JPanel {
     public static void main(String[] args) {
         Helper.initUI();
         var frame = new javax.swing.JFrame();
-        frame.add(new ProductCard("/images/Bánh_mì_thịt.jpg", "Bánh mì thịt", 10000));
+        frame.add(new ProductCard("/images/banh_mi_thit.jpg", "Bánh mì thịt", 10000));
         frame.pack();
         frame.setVisible(true);
 
@@ -189,7 +189,7 @@ public class ProductCard extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        jXImagePanel1.setImage(Helper.getImage("images\\Bánh_mì_thịt.jpg",200,200));
+        jXImagePanel1.setImage(Helper.getImage("images\\meat-bread.jpg",200,200));
         jXImagePanel1.setPreferredSize(new java.awt.Dimension(200, 200));
 
         javax.swing.GroupLayout jXImagePanel1Layout = new javax.swing.GroupLayout(jXImagePanel1);

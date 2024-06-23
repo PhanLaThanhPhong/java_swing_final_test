@@ -43,7 +43,7 @@ public class LoginGUI extends JFrame {
         setSize(screenSize.width, screenSize.height);
 
         backgroundPanel = new ImagePanel();
-        backgroundPanel.setImage(Helper.getIcon("/images/gtaV.jpg").getImage());
+        backgroundPanel.setImage(Helper.getIcon("/images/tam-thai-tu.jpg").getImage());
 
         var layout = new FlowLayout();
         layout.setAlignment(FlowLayout.CENTER);
