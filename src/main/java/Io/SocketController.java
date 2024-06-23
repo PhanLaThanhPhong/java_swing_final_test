@@ -5,7 +5,6 @@ import Payload.LoginPayload;
 import Utils.Helper;
 import Utils.Interval;
 import Utils.ServiceProvider;
-import DTO.Message;
 
 import java.awt.*;
 import java.io.IOException;
@@ -17,7 +16,6 @@ public class SocketController {
     private final SessionBUS sessionBUS;
     private final AccountBUS accountBUS;
     private final Server server;
-    private final MessageBUS messageBUS;
     private final ComputerBUS computerBUS;
     private final InvoiceBUS invoiceBUS;
 
@@ -25,7 +23,6 @@ public class SocketController {
         this.server = server;
         sessionBUS = ServiceProvider.getInstance().getService(SessionBUS.class);
         accountBUS = ServiceProvider.getInstance().getService(AccountBUS.class);
-        messageBUS = ServiceProvider.getInstance().getService(MessageBUS.class);
         computerBUS = ServiceProvider.getInstance().getService(ComputerBUS.class);
         invoiceBUS = ServiceProvider.getInstance().getService(InvoiceBUS.class);
     }
@@ -33,7 +30,6 @@ public class SocketController {
     public void startListen() throws IOException {
         server.listen();
         server.on("login", this::onLogin);
-        server.on("message", this::onMessage);
         server.on("changePassword", this::onChangePassword);
         server.on("logout", this::onLogout);
         server.on("shutdown", this::onShutDown);
@@ -56,21 +52,6 @@ public class SocketController {
         } catch (SQLException e) {
             e.printStackTrace();
             server.emit("errorMessage", "Đổi mật khẩu thất bại");
-        }
-    }
-    public void onMessage(Socket client, Serializable data) {
-        try {
-            var session = sessionBUS.findByComputerId(client.getMachineId());
-            var computer = computerBUS.getComputerById(client.getMachineId());
-            if (session == null) {
-                server.emit("errorMessage", "Lỗi máy tính");
-                return;
-            }
-            var message = Message.builder().id(null).content((String) data).fromType(Message.FROM.CLIENT).createdAt(new Date()).sessionId(session.getId()).build();
-            messageBUS.create(message);
-            Helper.showSystemNoitification("Tin nhắn từ máy " + computer.getName(), (String) data, TrayIcon.MessageType.INFO);
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
     public void onLogin(Socket client, Serializable data) {

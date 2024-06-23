@@ -17,7 +17,6 @@ public class ComputerBUS {
     @Setter
     private IComputerDAO computerDAO;
     public List<Computer> updateListComputerStatus(List<Computer> computers){
-
         computers= computers.stream().peek(c->{
             var isConnect = Server.getInstance().getClients().stream().filter(l->l.getMachineId()==c.getId()).findFirst().orElse(null)!=null;
             c.setStatus(isConnect?Computer.ComputerStatus.LOCKED.ordinal():Computer.ComputerStatus.OFF.ordinal());

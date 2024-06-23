@@ -1,15 +1,10 @@
 package DTO;
 
 
-import BUS.EmployeeBUS;
-import Utils.ServiceProvider;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
-//import java.lang.reflect.Field;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -93,18 +88,6 @@ public class Invoice implements Serializable {
     public String explainIsPaid(){
 
         return this.isPaid?"Đã thanh toán":"Chưa thanh toán";
-    }
-    public void setStatus(Integer status) {
-        switch (status) {
-            case 1 -> this.status = Status.WAITING_FOR_ACCEPT;
-            case 2 -> this.status = Status.ACCEPTED;
-            case 4 -> this.status = Status.REJECTED;
-            case 3 -> this.status = Status.DONE;
-        }
-    }
-
-    public void setIsPaid(boolean paid) {
-        isPaid = paid;
     }
     public void setType(Integer type) {
         switch (type) {

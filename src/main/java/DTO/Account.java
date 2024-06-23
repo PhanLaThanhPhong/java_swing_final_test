@@ -35,9 +35,6 @@ public class Account implements java.io.Serializable {
                 case USER -> "Khách hàng";
             };
         }
-        public boolean isGreaterThan(Role role){
-            return role.ordinal() > this.ordinal();
-        }
         public boolean isLessThan(Role role){
             return role.ordinal()< this.ordinal();
         }

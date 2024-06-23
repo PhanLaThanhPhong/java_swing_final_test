@@ -7,21 +7,17 @@ import DTO.Employee;
 import java.sql.SQLException;
 import java.util.List;
 
-
 public class EmployeeBUS {
     @Setter
     private IEmployeeDAO employeeDAO;
     @Setter
     private AccountBUS accountBUS;
     public Employee findEmployeeById(int id) {
-
         try {
             return  employeeDAO.findById(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
     public List<Employee> includeAccount(List<Employee> employees) {
         employees.forEach(employee -> {

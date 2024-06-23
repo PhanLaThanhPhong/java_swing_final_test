@@ -1,6 +1,5 @@
 package DAO.Interface;
 
-import DTO.Invoice;
 
 import java.sql.SQLException;
 import java.util.List;

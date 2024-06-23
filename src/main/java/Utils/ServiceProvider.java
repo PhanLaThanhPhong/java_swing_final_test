@@ -71,10 +71,8 @@ public class ServiceProvider {
     }
     public static void init(){
         ServiceProvider.getInstance()
-                .register(PoolConnection.class, new PoolConnection())
                 .register(IInvoiceDetailDAO.class, InvoiceDetailDAOImpl.class)
                 .register(IAccountDAO.class, AccountDAOImpl.class)
-                .register(IMessageDAO.class, MessageDAOImpl.class)
                 .register(IEmployeeDAO.class,EmployeeDAOImpl.class)
                 .register(ISessionDAO.class, SessionDAOImpl.class)
                 .register(IComputerDAO.class, ComputerDAOImpl.class)
@@ -84,7 +82,6 @@ public class ServiceProvider {
                 .register(ComputerBUS.class, ComputerBUS.class)
                 .register(SessionBUS.class, SessionBUS.class)
                 .register(ComputerUsageBUS.class, ComputerUsageBUS.class)
-                .register(MessageBUS.class, MessageBUS.class)
                 .register(IInvoiceDAO.class,InvoiceDAOImpl.class)
                 .register(InvoiceBUS.class, InvoiceBUS.class)
                 .register(IInvoiceDetailDAO.class,InvoiceDetailDAOImpl.class)

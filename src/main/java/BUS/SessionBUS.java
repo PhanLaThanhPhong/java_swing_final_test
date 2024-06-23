@@ -108,7 +108,6 @@ public class SessionBUS {
                 .prepaidAmount(account.getBalance())
                 .usingByAccount(account)
                 .build();
-
         try {
             var machine = computerBUS.getComputerById(machineId);
             if (machine == null) {
@@ -126,7 +125,6 @@ public class SessionBUS {
     }
 
     private static final int GAP = 60;//1 minute
-
     public Session createSession(int machineId) { // loại trả sau
         var session = Session.builder()
                 .serviceCost(0)
@@ -138,7 +136,6 @@ public class SessionBUS {
                 .prepaidAmount(0)
                 .totalTime(-1)
                 .build();
-
         try {
             var machine = computerBUS.getComputerById(machineId);
             if (machine == null) {
@@ -157,10 +154,8 @@ public class SessionBUS {
     }
 
     public int startSession(Session session, Socket client) {
-
         var intervalId = Interval.setInterval(
                 (cleanUp) -> {
-
                     try {
                         try {
                             client.emit("updateSession", new Session(this.increaseUsedTime(session)));
@@ -216,7 +211,6 @@ public class SessionBUS {
             return null;
         }
     }
-
 
     public Session increaseUsedTime(Session session) throws SQLException {
         session.setUsedTime(session.getUsedTime() + GAP);

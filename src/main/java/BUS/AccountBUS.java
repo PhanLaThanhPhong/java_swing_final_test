@@ -1,8 +1,6 @@
 package BUS;
 
 import DAO.Interface.IAccountDAO;
-import GUI.Client.MainGUI;
-import GUI.Server.Main;
 import GUI.Server.MainUI;
 import lombok.Setter;
 import DTO.Account;
@@ -15,7 +13,6 @@ public class AccountBUS {
     private SessionBUS sessionBUS;
     @Setter
     private IAccountDAO accountDAO;
-
 
     public AccountBUS() {
 
@@ -38,17 +35,6 @@ public class AccountBUS {
 
     public Account findById(int integer) throws SQLException {
         return this.accountDAO.findById(integer);
-    }
-
-
-
-    public void withdraw(int integer, double amount) throws SQLException {
-         var account = this.findById(integer);
-            account.setBalance(account.getBalance() - amount);
-            if (account.getBalance() < 0) {
-                throw new RuntimeException("Not enough money");
-            }
-            this.update(account);
     }
 
     public List<Account> getAllAccounts() throws  SQLException {

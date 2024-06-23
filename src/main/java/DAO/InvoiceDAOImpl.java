@@ -42,12 +42,6 @@ public class InvoiceDAOImpl extends BaseDAO implements IInvoiceDAO {
         return rowEffect == 1 ? findById(invoice.getId()):null;
     }
 
-
-
-
-
-
-
     @Override
     public List<Invoice> findByEmployeeId(int employeeId, Invoice.InvoiceType type) throws SQLException {
         var sql = "select * from Invoice where createdBy = ? and type = ? and deletedAt is null";
@@ -58,7 +52,6 @@ public class InvoiceDAOImpl extends BaseDAO implements IInvoiceDAO {
             return DBHelper.toList(resultSet, Invoice.class);
         }
     }
-
 
     @Override
     public boolean delete(Integer integer) throws SQLException {
@@ -106,8 +99,6 @@ public class InvoiceDAOImpl extends BaseDAO implements IInvoiceDAO {
         return listInvoice;
     }
 
-
-
     @Override
     public List<Invoice> findAllByType(Invoice.InvoiceType type) throws SQLException {
         String sqlSelectALlRow = """
@@ -152,8 +143,6 @@ public class InvoiceDAOImpl extends BaseDAO implements IInvoiceDAO {
                  and type = ?)
                  ORDER BY id DESC;
                 """;
-
-
         var stt = this.prepareStatement(sqlSelectInvoiceByInforFilter);
         stt.setString(1,inforFilter.getDateFrom());
         stt.setString(2,inforFilter.getDateTo());
@@ -188,7 +177,6 @@ public class InvoiceDAOImpl extends BaseDAO implements IInvoiceDAO {
         stt.close();
         return listInvoice;
     }
-
 
     @Override
     public Invoice create(Invoice invoice) throws SQLException {

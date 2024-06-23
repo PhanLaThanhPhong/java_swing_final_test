@@ -14,13 +14,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class Main {
-    private static final int COMPUTER_ID = 4;
+    private static final int COMPUTER_ID = 7;
     public static final Socket socket;
 
     static {
         try {
             // địa chỉ ip
-            socket = new Socket("192.168.100.6", Constants.SOCKET_PORT);
+            socket = new Socket("192.168.1.3", Constants.SOCKET_PORT);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

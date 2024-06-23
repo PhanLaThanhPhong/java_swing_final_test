@@ -6,43 +6,20 @@ package GUI.Client;
 
 import javax.swing.border.*;
 
-import GUI.Components.ChatGUI;
 import GUI.Server.Order.FoodOrder;
 import Utils.Fonts;
 import Utils.Helper;
 import com.formdev.flatlaf.ui.FlatDropShadowBorder;
-import DTO.Message;
 import DTO.Session;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.*;
 
 /**
  * @author Laffy
  */
 public class MainGUI extends JFrame {
-    public java.util.List<Message> messages = new ArrayList<>();
-    private final ChatGUI chatGUI;
-
     public MainGUI() {
-        chatGUI = new ChatGUI(messages, Message.FROM.CLIENT);
-        chatGUI.setVisible(false);
-        chatGUI.setOnSendListener(content -> {
-            Main.socket.emit("message", content);
-            Message message = Message.builder().content(content).fromType(Message.FROM.CLIENT).createdAt(new Date()).build();
-
-            messages.add(message);
-        });
-        Main.socket.on("message", (c, data) -> {
-            Message message = Message.builder().content(data.toString()).fromType(Message.FROM.SERVER).createdAt(new Date()).build();
-            Helper.showSystemNoitification("Tin nhắn từ máy chủ" , (String) data, TrayIcon.MessageType.INFO);
-            messages.add(message);
-            chatGUI.reloadMessageHistory();
-        });
-
-
         Main.socket.emit("statusChange", null);
         Main.socket.on("updateSession", (c, data) -> {
             Main.socket.emit("statusChange", null);
@@ -110,8 +87,7 @@ public class MainGUI extends JFrame {
     }
     private void initEvent(){
         button1.addActionListener(e -> {
-            chatGUI.setVisible(true);
-            chatGUI.setLocationRelativeTo(null);
+
         });
         button3.addActionListener(e -> {
             if(Main.session.getUsingByAccount()==null){

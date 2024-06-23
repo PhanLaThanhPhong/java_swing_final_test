@@ -14,21 +14,6 @@ public class ProductBUS {
     public ProductBUS() {
     }
 
-    public List<Product> findAllProduct(){
-        try {
-            return this.productDAO.findAll();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public  List<Product> findProductByType(Product.ProductType type) {
-        try {
-            return this.productDAO.filterByTypeProduct(type);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public Product findProductById(int id){
         try {
          return   productDAO.findById(id);

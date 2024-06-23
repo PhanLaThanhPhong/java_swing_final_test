@@ -37,8 +37,6 @@ public class InvoiceBUS {
         }
     }
 
-
-
     public boolean ValidateInforFilter(InforFilter inforFilter){
         try {
             int total = Integer.parseInt(inforFilter.getTotalFrom());
@@ -66,7 +64,6 @@ public class InvoiceBUS {
         return true;
     }
 
-
     public List<Invoice> findInvoiceByInforFilter(Invoice.InvoiceType type,InforFilter inforFilter){
         try {
             return invoiceDAO.findInvoiceByInforFilter(type,inforFilter);
@@ -75,7 +72,6 @@ public class InvoiceBUS {
         }
     }
 
-
     public void deleteInvoice(Integer integer){
         try {
             invoiceDAO.delete(integer);
@@ -83,7 +79,6 @@ public class InvoiceBUS {
             throw new RuntimeException(e);
         }
     }
-
 
     public Invoice findInvoiceById(Integer integer) {
         try {
@@ -116,7 +111,6 @@ public class InvoiceBUS {
                         .quantity(invoiceDetailDTO.getQuantity())
                         .price(product.getPrice())
                         .build();
-
                 try {
                     invoiceDetailDAO.create(newInvoiceDetail);
                 } catch (SQLException e) {
@@ -129,7 +123,6 @@ public class InvoiceBUS {
         }
     }
 
-
     public Invoice createInvoice(Invoice invoice){
         try {
             return new InvoiceDAOImpl().create(invoice);
@@ -138,7 +131,6 @@ public class InvoiceBUS {
         }
     }
 
-
     public Invoice updateInvoice(Invoice invoice){
         try {
             return invoiceDAO.update(invoice);
@@ -146,7 +138,6 @@ public class InvoiceBUS {
             throw new RuntimeException(e);
         }
     }
-
 
     public int countExportInvoiceSellByEmployeeId(int employeeId) {
         try {

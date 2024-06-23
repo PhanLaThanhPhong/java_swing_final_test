@@ -37,15 +37,15 @@ public class ComputerUsageBUS {
                 .build();
         return create(computerUsage);
     }
-public List<ComputerUsage> getAll()  {
-    try {
-        var list = computerUsageDAO.findAll();
+    public List<ComputerUsage> getAll()  {
+        try {
+            var list = computerUsageDAO.findAll();
 
-        return includeDetail(list);
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
+            return includeDetail(list);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
-}
     public List<ComputerUsage> includeDetail(List<ComputerUsage> list){
         list.forEach(computerUsage -> {
             if (computerUsage.getUsedByAccountId() != null) {
@@ -77,6 +77,4 @@ public List<ComputerUsage> getAll()  {
     public ComputerUsage findById(Integer integer) throws SQLException {
         return computerUsageDAO.findById(integer);
     }
-
- 
 }

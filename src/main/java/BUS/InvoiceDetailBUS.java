@@ -19,17 +19,6 @@ public class InvoiceDetailBUS {
     public List<InvoiceDetail> findByInvoiceId(Integer invoiceId){
         return invoiceDetailDAO.findAllByInvoiceId(invoiceId);
     }
-
-
-    public void updateDetailInvoice(InvoiceDetail invoiceDetail){
-        try {
-            invoiceDetailDAO.update(invoiceDetail);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
     //delete tat ca cac hoa don co id la ?
     public boolean deleteDetailInvoice(Integer invoiceId){
         try {

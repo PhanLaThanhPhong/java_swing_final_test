@@ -6,16 +6,13 @@ package GUI.Server.Home;
 
 import javax.swing.border.*;
 
-import GUI.Components.ChatGUI;
 import Io.Callback;
 import Io.Server;
 import Utils.Fonts;
 import Utils.Helper;
 import Utils.ServiceProvider;
 import DTO.Computer;
-import DTO.Message;
 import BUS.ComputerBUS;
-import BUS.MessageBUS;
 import BUS.SessionBUS;
 
 import java.awt.*;
@@ -40,14 +37,12 @@ public class Home extends JPanel {
     private List<Computer> computers;
     private final ComputerBUS computerBUS;
     private final SessionBUS sessionBUS;
-    private final MessageBUS messageBUS;
 
 
     public Home() {
         initComponents();
         computerBUS = ServiceProvider.getInstance().getService(ComputerBUS.class);
         sessionBUS = ServiceProvider.getInstance().getService(SessionBUS.class);
-        messageBUS = ServiceProvider.getInstance().getService(MessageBUS.class);
         try {
             computers = computerBUS.getAllComputers();
         } catch (SQLException e) {
@@ -143,62 +138,6 @@ public class Home extends JPanel {
                     throw new RuntimeException(ex);
                 }
             });
-            tinNhan.addActionListener(e -> {
-                try {
-                    var session = sessionBUS.findByComputerId(computer.getId());
-                    var list = messageBUS.findAllBySessionId(session.getId());
-                    list.forEach(m -> {
-                        m.setSession(session);
-                    });
-                    var chatGUI = new ChatGUI(list, Message.FROM.SERVER);
-
-                    chatGUI.setVisible(true);
-                    // set as Dialog
-                    var socketClient= Server.getInstance().getClients().stream().filter(c -> c.getMachineId() == computer.getId()).findFirst();
-                    if (socketClient.isEmpty()){
-                        throw new RuntimeException("Không tìm thấy máy");
-                    }
-                    chatGUI.setOnSendListener((message) -> {
-                        try {
-                            messageBUS.create(
-                                    Message.builder()
-                                            .sessionId(session.getId())
-                                            .content(message)
-                                            .fromType(Message.FROM.SERVER).
-                                            createdAt(new Date()).build()
-                            );
-                            socketClient.get().emit("message", message);
-                        } catch (SQLException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    });
-
-                    Callback onMessage =(client, message) -> {
-                        if (client.getMachineId() != computer.getId()) return;
-                        Message clientMessage = Message.builder()
-                                .sessionId(session.getId())
-                                .session(session)
-                                .content(message.toString())
-                                .fromType(Message.FROM.CLIENT).
-                                        createdAt(new Date()).build();
-
-                        chatGUI.getMessages().add(clientMessage);
-                        chatGUI.reloadMessageHistory();
-                    };
-                    Server.getInstance().on("message", onMessage);
-                    chatGUI.addWindowListener(new WindowAdapter() {
-                        @Override
-                        public void windowClosing(WindowEvent e) {
-                            socketClient.get().removeListener("message", onMessage);
-                        }
-                    });
-                    chatGUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-            });
-
             JButton button = new JButton();
             button.setComponentPopupMenu(popupMenu);
             button.addActionListener(e -> {
