@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Tue Mar 28 22:12:58 ICT 2023
- */
-
 package GUI.Server.Home;
 
 import javax.swing.border.*;
@@ -23,9 +19,6 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.*;
 
-/**
- * @author Laffy
- */
 public class Home extends JPanel {
     @Override
     public void setVisible(boolean aFlag) {

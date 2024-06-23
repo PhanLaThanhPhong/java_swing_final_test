@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Sun Mar 12 09:19:53 ICT 2023
- */
-
 package GUI.Server.Account;
 
 import GUI.Server.MainUI;
@@ -22,9 +18,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
 
-/**
- * @author HuuHoang
- */
 public class AccountGUI extends JPanel {
     private AccountBUS accountBUS;
     private List<Account> accounts;

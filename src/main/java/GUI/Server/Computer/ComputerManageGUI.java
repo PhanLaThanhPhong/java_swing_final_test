@@ -18,20 +18,7 @@ import java.util.Objects;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-
-/**
- *
- * @author Laffy
- */
 public class ComputerManageGUI extends javax.swing.JPanel {
-
-    /**
-     * Creates new form ComputerManageGUI
-     */
     private ComputerBUS computerBUS;
     private List<Computer> filteredComputers;
     private List<Computer> computers;

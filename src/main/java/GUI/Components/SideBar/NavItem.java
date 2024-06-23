@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Sat Mar 11 16:06:11 ICT 2023
- */
-
 package GUI.Components.SideBar;
 
 import lombok.Getter;
@@ -12,9 +8,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-/**
- * @author Laffy
- */
 public class NavItem extends JButton {
     private boolean isSelected = false;
     @Getter

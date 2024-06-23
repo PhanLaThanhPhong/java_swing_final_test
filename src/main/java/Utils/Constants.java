@@ -4,7 +4,6 @@ import GUI.Server.Account.AccountGUI;
 import GUI.Server.Computer.ComputerManageGUI;
 import GUI.Server.ComputerUsage.ComputerUsageGUI;
 import GUI.Server.Home.Home;
-import GUI.Server.Invoice.CreateInvoiceGUI;
 import GUI.Server.Invoice.InvoiceManageGUI;
 import GUI.Server.Personal.PersonalSetting;
 import GUI.Server.Product.ProductGUI;

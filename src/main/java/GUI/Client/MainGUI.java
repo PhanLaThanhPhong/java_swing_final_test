@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Fri Mar 10 17:10:28 ICT 2023
- */
-
 package GUI.Client;
 
 import javax.swing.border.*;
@@ -15,9 +11,6 @@ import DTO.Session;
 import java.awt.*;
 import javax.swing.*;
 
-/**
- * @author Laffy
- */
 public class MainGUI extends JFrame {
     public MainGUI() {
         Main.socket.emit("statusChange", null);

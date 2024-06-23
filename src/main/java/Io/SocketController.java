@@ -10,7 +10,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.Date;
 
 public class SocketController {
     private final SessionBUS sessionBUS;

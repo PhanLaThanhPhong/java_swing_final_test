@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package GUI.Server.ComputerUsage;
 
 import BUS.AccountBUS;
@@ -20,10 +16,6 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Laffy
- */
 public class ComputerUsageGUI extends javax.swing.JPanel {
     public static void main(String[] args) {
         Helper.initUI();
@@ -35,10 +27,6 @@ public class ComputerUsageGUI extends javax.swing.JPanel {
         frame.setVisible(true);
         
     }
-
-    /**
-     * Creates new form ComputerUsageGUI
-     */
     private ComputerUsageBUS computerUsageBUS;
     private ComputerBUS computerBUS;
     private AccountBUS accountBUS;

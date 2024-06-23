@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Wed Mar 22 21:45:12 ICT 2023
- */
-
 package GUI.Server.Account;
 
 import javax.swing.border.*;
@@ -16,9 +12,7 @@ import java.awt.*;
 import java.util.Arrays;
 import javax.swing.*;
 
-/**
- * @author HuuHoang
- */
+
 public class AccountDetailGUI extends JDialog {
 
     @Getter

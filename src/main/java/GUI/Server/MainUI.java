@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Sat Mar 11 17:09:21 ICT 2023
- */
-
 package GUI.Server;
 
 import BUS.ComputerUsageBUS;
@@ -22,11 +18,6 @@ import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-/**
- * @author Laffy
- */
-
 
 public class MainUI extends JFrame {
     @Getter
