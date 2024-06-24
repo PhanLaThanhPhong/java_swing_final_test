@@ -53,6 +53,7 @@ public class SocketController {
             server.emit("errorMessage", "Đổi mật khẩu thất bại");
         }
     }
+
     public void onLogin(Socket client, Serializable data) {
         try {
             LoginPayload loginPayload = (LoginPayload) data;

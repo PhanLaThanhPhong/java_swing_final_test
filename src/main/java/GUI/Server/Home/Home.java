@@ -26,7 +26,6 @@ public class Home extends JPanel {
        fetchComputers();
     }
 
-    private List<JButton> computerButtons;
     private List<Computer> computers;
     private final ComputerBUS computerBUS;
     private final SessionBUS sessionBUS;
@@ -88,49 +87,10 @@ public class Home extends JPanel {
         computers.forEach(computer -> {
             JPopupMenu popupMenu = new JPopupMenu();
             JMenuItem tatItem = new JMenuItem("Tắt máy");
-            JMenuItem lockItem = new JMenuItem("Khoá máy");
-            JMenuItem moMayTraTruoc = new JMenuItem("Mở máy trả trước");
-            JMenuItem moMayTraSau = new JMenuItem("Mở máy trả sau");
-            JMenuItem napTien = new JMenuItem("Nạp tiền");
-            JMenuItem chiTiet = new JMenuItem("Chi tiết");
-            JMenuItem tinNhan = new JMenuItem("Tin nhắn");
             tatItem.setFont(Fonts.getFont(Font.PLAIN, 15));
-            moMayTraTruoc.setFont(Fonts.getFont(Font.PLAIN, 15));
-            moMayTraSau.setFont(Fonts.getFont(Font.PLAIN, 15));
-            napTien.setFont(Fonts.getFont(Font.PLAIN, 15));
-            chiTiet.setFont(Fonts.getFont(Font.PLAIN, 15));
-            tinNhan.setFont(Fonts.getFont(Font.PLAIN, 15));
 
             popupMenu.add(tatItem);
-            popupMenu.add(moMayTraTruoc);
-            popupMenu.add(moMayTraSau);
-            popupMenu.addSeparator();
-            popupMenu.add(chiTiet);
-            popupMenu.add(tinNhan);
-            popupMenu.addSeparator();
-            popupMenu.add(napTien);
-            moMayTraTruoc.addActionListener(e -> {
-                var result = JOptionPane.showInputDialog(this, "Nhập số tiền trả trước");
-                try {
-                    int prePaid = Integer.parseInt(result);
-                    if (prePaid <= 1000) throw new RuntimeException();
-                    sessionBUS.createSession(prePaid, computer.getId());
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Số tiền không hợp lệ");
-                }
-            });
-            moMayTraSau.addActionListener(e -> {
-                this.sessionBUS.createSession(computer.getId());
-            });
-            lockItem.addActionListener(e -> {
-                try {
-                    this.sessionBUS.closeSession(computer.getId());
-                    Server.getInstance().emitSelf("statusChange", null);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
+
             JButton button = new JButton();
             button.setComponentPopupMenu(popupMenu);
             button.addActionListener(e -> {
@@ -144,17 +104,11 @@ public class Home extends JPanel {
                 case OFF -> {
                     button.setIcon(offlineImg);
                     tatItem.setEnabled(false);
-                    tinNhan.setEnabled(false);
-                    napTien.setEnabled(false);
-                    lockItem.setEnabled(false);
                 }
                 case LOCKED -> {
                     button.setIcon(lockImg);
                     //#F56565
                     button.setForeground(new Color(0xff5656));
-                    tinNhan.setEnabled(false);
-                    napTien.setEnabled(false);
-                    lockItem.setEnabled(false);
                     tatItem.setEnabled(true);
 
                 }
@@ -163,10 +117,6 @@ public class Home extends JPanel {
                     //
                     button.setForeground(new Color(0x68d391));
                     button.setIcon(onlineImg);
-                    moMayTraSau.setEnabled(false);
-                    moMayTraTruoc.setEnabled(false);
-                    tinNhan.setEnabled(true);
-                    lockItem.setEnabled(true);
                     tatItem.setEnabled(true);
                 }
             }

@@ -10,7 +10,4 @@ public class Fonts {
     public static  Font getFont(int style) {
         return  NUNITO.deriveFont(style);
     }
-
-
 }
-

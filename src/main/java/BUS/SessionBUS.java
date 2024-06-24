@@ -125,33 +125,6 @@ public class SessionBUS {
     }
 
     private static final int GAP = 60;//1 minute
-    public Session createSession(int machineId) { // loại trả sau
-        var session = Session.builder()
-                .serviceCost(0)
-                .usedCost(0)
-                .usedTime(0)
-                .startTime(new java.sql.Timestamp(System.currentTimeMillis()))
-                .usingBy(null)
-                .computerID(machineId)
-                .prepaidAmount(0)
-                .totalTime(-1)
-                .build();
-        try {
-            var machine = computerBUS.getComputerById(machineId);
-            if (machine == null) {
-                throw new RuntimeException("Machine not found");
-            }
-            session.setUsingComputer(machine);
-            var newSession = sessionDAO.create(session);
-            var client = Server.getInstance().getClients().stream().filter(c -> c.getMachineId() == machineId).findFirst().orElseThrow();
-            client.emit("openNewSession", newSession);
-            var intervalId = startSession(newSession, client);
-            client.setIntervalId(intervalId);
-            return newSession;
-        } catch (SQLException e) {
-            return null;
-        }
-    }
 
     public int startSession(Session session, Socket client) {
         var intervalId = Interval.setInterval(
@@ -178,38 +151,6 @@ public class SessionBUS {
         );
         client.setIntervalId(intervalId);
         return intervalId;
-    }
-
-    public Session createSession(int prePaidAmount, int machineId) { // loại trả trước
-        var session = Session.builder()
-                .serviceCost(0)
-                .usedCost(0)
-                .usedTime(0)
-                .startTime(new java.sql.Timestamp(System.currentTimeMillis()))
-                .usingBy(null)
-                .computerID(machineId)
-                .prepaidAmount(prePaidAmount)
-                .build();
-
-        try {
-            var machine = computerBUS.getComputerById(machineId);
-            if (machine == null) {
-                throw new RuntimeException("Machine not found");
-            }
-            var cost = machine.getPrice(); // per hour
-            // totalTime in seconds
-            int totalTime = (int) ((prePaidAmount * 1.0f / cost) * 3600);
-            session.setTotalTime(totalTime);
-            session.setUsingComputer(machine);
-            var newSession = sessionDAO.create(session);
-            var client = Server.getInstance().getClients().stream().filter(c -> c.getMachineId() == machineId).findFirst().orElseThrow();
-            client.emit("openNewSession", newSession);
-            client.setIntervalId(startSession(newSession, client));
-
-            return newSession;
-        } catch (SQLException e) {
-            return null;
-        }
     }
 
     public Session increaseUsedTime(Session session) throws SQLException {

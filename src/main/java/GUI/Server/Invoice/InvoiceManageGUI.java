@@ -38,7 +38,7 @@ public class InvoiceManageGUI extends JPanel{
     AccountBUS accountBUS = ServiceProvider.getInstance().getService(AccountBUS.class);
     ComputerBUS computerBUS = ServiceProvider.getInstance().getService(ComputerBUS.class);
     ProductBUS productBUS = ServiceProvider.getInstance().getService(ProductBUS.class);
-
+    EmployeeBUS employeeService = ServiceProvider.getInstance().getService(EmployeeBUS.class);
     JTextField limitTotalFrom;
     JTextField limitTotalTo;
     ArrayList<ComboboxItem> listComputerComboboxItem;
@@ -208,7 +208,29 @@ public class InvoiceManageGUI extends JPanel{
 
 
 //        d------Choose Employee of Filter---
+        ImageIcon employeesIcon = new ImageIcon("D:\\projectJava\\src\\GUI\\img\\nhanvien.png");
+        Image imgEmployee = employeesIcon.getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH);
+        employeesIcon = new ImageIcon(imgEmployee);
+        JLabel titleContainEmployeeFilter = new JLabel("Nhân viên ",employeesIcon,JLabel.LEFT);
+        employeeToFilter = new JComboBox();
 
+        List<Employee> allEmployee;
+        allEmployee = employeeService.findAllEmployee();
+        listEmployeeComboboxItem = new ArrayList<ComboboxItem>();
+        listEmployeeComboboxItem.add(new ComboboxItem());
+        for(int i = 0; i < allEmployee.size();i++){
+            listEmployeeComboboxItem.add(new ComboboxItem());
+            listEmployeeComboboxItem.get(i).setId(allEmployee.get(i).getId());
+            listEmployeeComboboxItem.get(i).setValue(allEmployee.get(i).getName());
+            employeeToFilter.addItem(listEmployeeComboboxItem.get(i).getValue());
+        }
+
+        employeeToFilter.setPreferredSize(new Dimension(140,32));
+        employeeToFilter.setSelectedItem(null);
+        JPanel containEmployeeFilter = new JPanel(new FlowLayout());
+        containEmployeeFilter.add(titleContainEmployeeFilter);
+        containEmployeeFilter.add(new JLabel("    "));
+        containEmployeeFilter.add(employeeToFilter);
 
 //        e------choose Account of Filter---
         ImageIcon userIcon = new ImageIcon("D:\\projectJava\\src\\GUI\\img\\user.png");
@@ -315,6 +337,7 @@ public class InvoiceManageGUI extends JPanel{
         managerInvoiceFilter.add(containLimitTotal);
         managerInvoiceFilter.add(containComputerFilter);
         managerInvoiceFilter.add(containAccountFilter);
+        managerInvoiceFilter.add(containEmployeeFilter);
         managerInvoiceFilter.add((containActionInFilter));
 
 //        1--------Body Filter for search end------

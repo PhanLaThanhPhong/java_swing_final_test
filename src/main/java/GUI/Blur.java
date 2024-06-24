@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Blur extends JDialog{
-
     public Blur(Frame owner) {
         super(owner);
 

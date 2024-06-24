@@ -12,14 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Helper {
-    public static File[] getResourceFolderFiles(String folder) {
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        URL url = loader.getResource(folder);
-        assert url != null;
-        String path = url.getPath();
-        return new File(path).listFiles();
-    }
-
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     public static String getDateString(Date date) {
@@ -147,20 +139,6 @@ public class Helper {
             return false;
         }
         return true;
-    }
-
-    public static ImageIcon getImageIcon(String path, int width, int height) {
-        try {
-//            Image image = ImageIO.read(new URL(path));
-            Image image = ImageIO.read(new File(path));
-            if (width == -1 || height == -1) {
-                return new ImageIcon(image);
-            }
-            Image image1 = image.getScaledInstance(width, height, 0);
-            return new ImageIcon(image1);
-        } catch (IOException e) {
-            return null;
-        }
     }
 
     public static boolean checkNumber(String text) {

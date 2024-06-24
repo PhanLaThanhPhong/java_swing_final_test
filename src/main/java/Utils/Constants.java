@@ -10,7 +10,6 @@ import GUI.Server.Product.ProductGUI;
 import lombok.*;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,19 +31,9 @@ public final class Constants {
     }
 
     private static List<Tab> tabs = null;
-    private static JPanel createPanelWithText(String text) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        panel.setBackground(Color.BLUE);
 
-        JLabel label = new JLabel(text);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(label, BorderLayout.CENTER);
-        return panel;
-    }
     public static List<Tab> getTabs() {
         if (tabs!=null) return tabs;
-
         tabs = new ArrayList<>();
         tabs= new ArrayList<>();
         tabs.add(
