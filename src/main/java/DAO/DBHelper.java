@@ -20,11 +20,11 @@ public class DBHelper {
         return getInstance().connection;
     }
 
-    private static final String SERVER = "PHONG";
+    private static final String SERVER = "TUTLE\\BAOTHIEN";
     private static final String DATABASE_NAME = "NetCF";
-    private static final String USER_NAME = "ADMINN";
+    private static final String USER_NAME = "Sa";
 
-    private static final String PASSWORD = "phong123";
+    private static final String PASSWORD = "okeoke";
 
     private  Connection connection = null;
 

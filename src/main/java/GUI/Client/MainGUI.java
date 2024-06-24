@@ -33,7 +33,7 @@ public class MainGUI extends JFrame {
         panel2.setBorder(BorderFactory.createEmptyBorder(10, 50, 10, 50));
         label7.setText(Main.session.getUsingByAccount() == null ? "KHÁCH VÃNG LAI" : Main.session.getUsingByAccount().getUsername());
         label7.putClientProperty("FlatLaf.styleClass", "h2");
-        label8.setIcon(Helper.getIcon("/icons/supportbanner.png", 300, 180));
+        label8.setIcon(Helper.getIcon("/icons/supportbanner.jpg", 300, 180));
         Timer timer = new Timer(1000, e -> {
             if (textField2.getText().contains(":")) {
                 textField2.setText(Helper.toHHMM(Main.session.getUsedTime(), false));
