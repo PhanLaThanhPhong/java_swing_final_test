@@ -145,7 +145,7 @@ public class InvoiceManageGUI extends JPanel{
 //        MANAGER BODY START
 //        1---------Body Filter for Search start-----
 //            a-----Title of FILTER---
-        ImageIcon iconFilter = new ImageIcon("D:\\projectJava\\src\\GUI\\img\\filter.png");
+        ImageIcon iconFilter = new ImageIcon("");
         Image imgFilter = iconFilter.getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
         iconFilter = new ImageIcon(imgFilter);
         JLabel titleFilter = new JLabel("Lọc tìm kiếm",iconFilter,JLabel.CENTER);
@@ -187,11 +187,11 @@ public class InvoiceManageGUI extends JPanel{
 
 
 //            c-------Total limit of FIlter---
-        ImageIcon totalIcon = new ImageIcon("D:\\projectJava\\src\\GUI\\img\\dollar.png");
+        ImageIcon totalIcon = new ImageIcon("/images/dollar.jpg");
         Image imgMoney = totalIcon.getImage();
         imgMoney = imgMoney.getScaledInstance(20,20,Image.SCALE_SMOOTH);
         totalIcon = new ImageIcon(imgMoney);
-        JLabel titleLimitTotal = new JLabel("Khoảng total",totalIcon,JLabel.LEFT);
+        JLabel titleLimitTotal = new JLabel("Giá từ",totalIcon,JLabel.LEFT);
 //        titleLimitTotal.setPreferredSize(new Dimension(150,30));
         limitTotalFrom = new JTextField(4);
         limitTotalFrom.setPreferredSize(new Dimension(0,25));
