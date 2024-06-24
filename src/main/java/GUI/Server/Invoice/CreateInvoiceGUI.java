@@ -151,29 +151,30 @@ public class CreateInvoiceGUI extends JPanel{
         containCoumputerID.add(titleListComputerID);
         containCoumputerID.add(listComputerID);
 
-        titleListAccountID = new JLabel("Tài khoản");
-        titleListAccountID.setFont(new Font("nunito", Font.PLAIN, 17));
+        titleListAccountID =
+                new JLabel("Tài khoản");
+        titleListAccountID.setFont(
+                new Font("nunito", Font.PLAIN, 17));
         listAccountID = new JComboBox();
         AccountBUS accountBUS = ServiceProvider.getInstance().getService(AccountBUS.class);
         List<Account> allAccount;
-        try {
+        try
+        {
             allAccount = accountBUS.getAllAccounts();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        listAccountComboboxItem = new ArrayList<ComboboxItem>();
-        listAccountComboboxItem.add(new ComboboxItem());
-        listAccountComboboxItem.get(0).setId(0);
-        listAccountComboboxItem.get(0).setValue("Khách vãn lai");
-        listAccountID.addItem(listAccountComboboxItem.get(0).getValue());
+        listAccountComboboxItem = new ArrayList<>(allAccount.size());
         for (int i = 0; i < allAccount.size(); i++) {
             listAccountComboboxItem.add(new ComboboxItem());
-            listAccountComboboxItem.get(i + 1).setId(allAccount.get(i).getId());
-            listAccountComboboxItem.get(i + 1).setValue(allAccount.get(i).getUsername());
-            listAccountID.addItem(listAccountComboboxItem.get(i + 1).getValue());
+            listAccountComboboxItem.get(i).setId(allAccount.get(i).getId());
+            listAccountComboboxItem.get(i).setValue(allAccount.get(i).getUsername());
+            listAccountID.addItem(listAccountComboboxItem.get(i).getValue());
         }
-        listAccountID.setPreferredSize(new Dimension(110, 25));
-        JPanel containAccountID = new JPanel(new FlowLayout(FlowLayout.LEFT, 40, 0));
+        listAccountID.setPreferredSize(
+                new Dimension(110, 25));
+        JPanel containAccountID = new JPanel(new FlowLayout(FlowLayout.LEFT, 53, 0));
         containAccountID.add(titleListAccountID);
         containAccountID.add(listAccountID);
 
